@@ -236,9 +236,10 @@ class _HomeScreenState extends State<HomeScreen> {
               itemCount: listOfUsers.length,
               separatorBuilder: (context, index) => const SizedBox(height: 10),
               itemBuilder: (context, index) => ListTile(
-                // title: Text(listOfUsers[index].name!),
-                subtitle: Text(listOfUsers[index].company!.name!),
-                leading: Text(listOfUsers[index].id!.toString()),
+                title: Text(listOfUsers[index].name??""),
+                subtitle: Text(listOfUsers[index].company?.name ??""),
+                leading: Text(listOfUsers[index].id?.toString()??""),
+                // leading: Text(listOfUsers[index].id!.toString()),
               ),
             ),
           ),
@@ -260,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   sendData(index) async {
-    await users!.add(data[index]).then((value) {
+    await users.add(data[index]).then((value) {
       debugPrint("Send Data");
       if (!(index == data.length - 1)) {
         sendData(index + 1);
